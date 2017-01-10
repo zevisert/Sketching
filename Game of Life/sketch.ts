@@ -14,6 +14,8 @@ const enum State {
 	newborn = 4
 };
 
+let runLife : boolean  = false;
+let stepOnce : boolean = false;
 let cells : Cells;
 let workarea = { width: 600, height: 600, cellSize: 10 };
 
@@ -27,8 +29,50 @@ function draw() : void {
 	noStroke();
 	clear();
 	cells.draw(workarea.cellSize);
-	cells.live();
+
+	if (runLife || stepOnce) {
+		cells.live();
+		stepOnce = false;
+	}
 }
+
+
+function mouseClicked() : void {
+	let cellX = clamp(Math.floor(mouseX / workarea.cellSize), 0, workarea.width / workarea.cellSize - 1);
+	let cellY = clamp(Math.floor(mouseY / workarea.cellSize), 0, workarea.height / workarea.cellSize - 1);
+
+	if (cells.getState(cellX, cellY) === State.alive) {
+		cells.setState(cellX, cellY, State.dead);
+	} else {
+		cells.setState(cellX, cellY, State.alive);
+	}
+}
+
+function mouseDragged() : void {
+	let cellX = clamp(Math.floor(mouseX / workarea.cellSize), 0, workarea.width / workarea.cellSize -1);
+	let cellY = clamp(Math.floor(mouseY / workarea.cellSize), 0, workarea.height / workarea.cellSize -1);
+
+	if (cells.getState(cellX, cellY) === State.alive) {
+		cells.setState(cellX, cellY, State.dead);
+	} else {
+		cells.setState(cellX, cellY, State.alive);
+	}
+}
+
+function clamp(num, min, max) : number {
+  return num <= min ? min : num >= max ? max : num;
+}
+
+function toggleLife() { 
+	runLife = !runLife;
+}
+
+function doStep() {
+	stepOnce = true;
+}
+
+
+
 
 class Cells {
 	private states: State[][];

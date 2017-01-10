@@ -5,7 +5,7 @@
     <script src="sketch.js"></script>
   
     <style type="text/css">
-      canvas, button {
+      canvas {
         margin: auto;
         display: flex;
   
@@ -21,6 +21,10 @@
     <H2 style="font-family: 'Permanent Marker', cursive; color: LimeGreen; text-align: center;">
       <i>Conway's Game of Life</i>
     </H2>
+    <div style="display: block; text-align: center; margin: auto">
+      <button onclick="toggleLife()">Run | Pause</button>
+      <button onclick="doStep()">Step Once</button>
+    </div>
     <br>
   </body>
 </html>
