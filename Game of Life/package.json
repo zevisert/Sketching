@@ -1,0 +1,19 @@
+{
+  "name": "game-of-life",
+  "version": "1.0.0",
+  "description": "Conway's game of life implemented in P5.js using typescript",
+  "main": "sketch.js",
+  "scripts": {
+    "start": "tsc -w"
+  },
+  "keywords": [
+    "Typescript",
+    "P5js",
+    "Game of Life"
+  ],
+  "author": "Zev Isert",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^2.1.4"
+  }
+}
